@@ -2,6 +2,7 @@
 Library    SSHLibrary
 Library    jakchcecie.py
 Library    SeleniumLibrary
+Library    OperatingSystem
 
 *** Variables ***
 ${WIADOMOSC}    Wszystko jest OK !
@@ -59,6 +60,8 @@ Test Logowanie do poczty
     Zdjecie zalogowany
     Sleep    1
     zamkniecie przegladarki
+Podanie IP
+    Uruchomienie skryptu
 
 *** Keywords ***
 Keyword dzien dobry swiecie
@@ -115,3 +118,8 @@ wylogowanie
 
 zamkniecie przegladarki
       Close browser
+
+Uruchomienie skryptu
+    ${WYNIK}=    RUN    ./bash_test.sh lo
+    Log To Console    ${WYNIK}
+    Should be Equal   ${WYNIK}     127.0.0.1
